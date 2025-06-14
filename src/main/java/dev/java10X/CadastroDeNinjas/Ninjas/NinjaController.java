@@ -14,8 +14,4 @@ public class NinjaController {
         return "Essa e minha primeira mensagem nessa rota";
     }
 
-
-
-
-
 }
