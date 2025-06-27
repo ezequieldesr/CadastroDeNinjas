@@ -16,32 +16,32 @@ public class NinjaController {
     }
 
     @GetMapping("/boasVindas")
-    public String boasVindas(){
+    public String boasVindas() {
         return "Essa e minha primeira mensagem nessa rota";
     }
 
     @PostMapping("/criar")
-    public String criarNinja(){
+    public String criarNinja() {
         return "Ninja criado com sucesso!";
     }
 
     @GetMapping("/listar")
-    public List<NinjaModel> listarNinjas(){
+    public List<NinjaModel> listarNinjas() {
         return ninjaService.listarNinjas();
     }
 
     @GetMapping("/listar/{id}")
-    public NinjaModel listarNinjaPorId(@PathVariable Long id){
+    public NinjaModel listarNinjaPorId(@PathVariable Long id) {
         return ninjaService.buscarNinjaPorId(id);
     }
 
     @PutMapping("/atualizar/{id}")
-    public String atualizarNinja(){
+    public String atualizarNinja() {
         return "Ninja atualizado com sucesso!";
     }
 
     @DeleteMapping("/deletar/{id}")
-    public String deletarNinja(){
+    public String deletarNinja() {
         return "Ninja deletado com sucesso!";
     }
 
