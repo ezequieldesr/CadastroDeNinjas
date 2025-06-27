@@ -30,6 +30,11 @@ public class NinjaController {
         return ninjaService.listarNinjas();
     }
 
+    @GetMapping("/listar/{id}")
+    public NinjaModel listarNinjaPorId(@PathVariable Long id){
+        return ninjaService.buscarNinjaPorId(id);
+    }
+
     @PutMapping("/atualizar/{id}")
     public String atualizarNinja(){
         return "Ninja atualizado com sucesso!";

@@ -1,8 +1,11 @@
 package dev.java10X.CadastroDeNinjas.Ninjas;
 
+import jakarta.websocket.server.PathParam;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NinjaService {
@@ -15,6 +18,11 @@ public class NinjaService {
 
     public List<NinjaModel> listarNinjas(){
         return ninjaRepository.findAll();
+    }
+
+    public NinjaModel buscarNinjaPorId(Long id){
+        Optional<NinjaModel> ninjaModel = ninjaRepository.findById(id);
+        return ninjaModel.orElse(null);
     }
 
 
