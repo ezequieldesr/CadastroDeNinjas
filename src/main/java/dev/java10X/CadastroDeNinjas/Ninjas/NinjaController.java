@@ -20,11 +20,6 @@ public class NinjaController {
         return "Essa e minha primeira mensagem nessa rota";
     }
 
-    @PostMapping("/criar")
-    public String criarNinja() {
-        return "Ninja criado com sucesso!";
-    }
-
     @GetMapping("/listar")
     public List<NinjaModel> listarNinjas() {
         return ninjaService.listarNinjas();
@@ -34,6 +29,11 @@ public class NinjaController {
     public NinjaModel listarNinjaPorId(@PathVariable Long id) {
         return ninjaService.buscarNinjaPorId(id);
     }
+    @PostMapping("/criar")
+    public NinjaModel criarNinja(@RequestBody NinjaModel ninjaModel) {
+        return ninjaService.criarNinja(ninjaModel);
+    }
+
 
     @PutMapping("/atualizar/{id}")
     public String atualizarNinja() {
