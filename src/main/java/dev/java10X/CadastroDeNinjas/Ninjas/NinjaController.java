@@ -26,7 +26,7 @@ public class NinjaController {
     }
 
     @GetMapping("/listar/{id}")
-    public NinjaModel listarNinjaPorId(@PathVariable Long id) {
+    public NinjaDTO listarNinjaPorId(@PathVariable Long id) {
         return ninjaService.buscarNinjaPorId(id);
     }
     @PostMapping("/criar")
@@ -36,8 +36,8 @@ public class NinjaController {
 
 
     @PutMapping("/atualizar/{id}")
-    public NinjaModel atualizarNinja(@PathVariable Long id, @RequestBody NinjaModel ninjaModel) {
-        return ninjaService.atualizarNinja(id,ninjaModel);
+    public NinjaDTO atualizarNinja(@PathVariable Long id, @RequestBody NinjaDTO ninjaDTO) {
+        return ninjaService.atualizarNinja(id,ninjaDTO);
     }
 
     @DeleteMapping("/deletar/{id}")
