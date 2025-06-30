@@ -3,9 +3,10 @@ package dev.java10X.CadastroDeNinjas.Ninjas;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10X.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "tb_cadastro")
@@ -37,6 +38,5 @@ public class NinjaModel {
 
     @ManyToOne
     @JoinColumn(name = "missoes_id")
-    @JsonIgnore
     private MissoesModel missoes;
 }

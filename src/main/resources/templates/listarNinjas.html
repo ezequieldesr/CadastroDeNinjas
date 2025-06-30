@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabela de Ninjas</title>
+    <style>
+        /* Estilos gerais da página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #4a4a4a;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Estilização da tabela */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden; /* Garante que os cantos arredondados sejam aplicados ao thead */
+}
+
+/* Cabeçalho da tabela */
+thead {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Corpo e células da tabela */
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle; /* Alinha o conteúdo verticalmente */
+}
+
+/* Linhas da tabela */
+tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Efeito ao passar o mouse */
+}
+
+/* Imagem do ninja */
+td img {
+    border-radius: 50%; /* Deixa a imagem redonda */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+}
+
+/* Estilização dos botões e links */
+td a {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 4px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Botão "Ver Detalhes" (Azul) */
+a:nth-of-type(1) {
+    background-color: #007bff;
+}
+
+a:nth-of-type(1):hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Botão "Alterar" (Verde) */
+a:nth-of-type(2) {
+    background-color: #28a745;
+}
+
+a:nth-of-type(2):hover {
+    background-color: #1e7e34;
+    transform: translateY(-2px);
+}
+
+/* Botão "Deletar" (Vermelho) */
+a:nth-of-type(3) {
+    background-color: #dc3545;
+}
+
+a:nth-of-type(3):hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* Span para missões */
+span[th\\:if] {
+    font-style: italic;
+    color: #555;
+}
+    </style>
+</head>
+<body>
+<h1>Lista de ninjas</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Imagem</th>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Email</th>
+        <th>Rank</th>
+        <th>Missoes</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="ninja: ${ninjas}">
+            <td> <img th:src="${ninja.imgURL}" height="100" width="100"></td>
+            <td th:text="${ninja.id}"> </td>
+            <td th:text="${ninja.nome}"> </td>
+            <td th:text="${ninja.idade}"> </td>
+            <td th:text="${ninja.email}"> </td>
+            <td th:text="${ninja.rank}"> </td>
+            <td>
+               <span th:if="${ninja.missoes}"><span th:text="${ninja.missoes.nomeMissao}"></span>, Dificuldade: <span th:text="${ninja.missoes.dificuldade}"></span></span>
+                <span th:if="${ninja.missoes == null}">Sem missoes cadastradas</span>
+            </td>
+            <td>
+                <a th:href="@{/ninjas/ui/detalhes/{id}(id=${ninja.id})}">Ver Detalhes</a>
+                <a th:href="@{/ninjas/ui/alterar/{id}(id=${ninja.id})}">Alterar</a>
+                <a th:href="@{/ninjas/ui/deletar/{id}(id=${ninja.id})}">Deletar</a>
+            </td>
+        </tr>
+    </tbody>
+
+
+</table>
+
+</body>
+</html>
